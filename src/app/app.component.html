@@ -13,9 +13,21 @@
     {{pair.key + ':' + pair.value}}
 </div>
 
-<div class="courses">
+<button (click)="onCoursesEdited()">Edit Courses</button>
 
+<div class="courses" #container>
+
+    <course-card #cardRef1
+        [course]="courses[1]"
+        (courseSelected)="onCourseSelected($event)">
+    </course-card>
     <course-card
+        [course]="courses[2]"
+        (courseSelected)="onCourseSelected($event)">
+    </course-card>
+
+    <hr>
+    <course-card #cards
         *ngFor="let course of courses;index as i;first as isFirst;last as isLast;even as isEven;odd as isOdd"
         [class.is-first]="isFirst"
         [class.is-last]="isLast"
