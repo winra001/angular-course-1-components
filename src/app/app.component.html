@@ -16,7 +16,7 @@
 <br><br>
 
 <b>Section 6: Directive</b>
-<div [highlighted]="true" (toggleHighlight)="onToggle($event)" class="courses" *ngIf="courses[1] as course">
+<div highlighted (toggleHighlight)="onToggle($event)" class="courses" *ngIf="courses[1] as course">
     <course-card [course]="course" (courseSelected)="onCourseSelected($event)">
         <course-image [src]="course.iconUrl"></course-image>
         <div class="course-description">
