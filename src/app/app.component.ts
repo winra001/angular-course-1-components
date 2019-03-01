@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildre
 import { COURSES } from '../db-data';
 import { Course } from './model/course';
 import { CourseCardComponent } from './course-card/course-card.component';
+import { HighlightedDirective } from './directives/highlighted.directive';
 
 @Component({
     selector: 'app-root',
@@ -29,6 +30,13 @@ export class AppComponent implements AfterViewInit {
     @ViewChildren(CourseCardComponent)
     cards: QueryList<CourseCardComponent>;
 
+    // Directive Export
+    @ViewChild(HighlightedDirective)
+    highlighted: HighlightedDirective;
+
+    @ViewChild(CourseCardComponent, {read: HighlightedDirective})
+    highlighted2: HighlightedDirective;
+
     constructor() {
         console.log('containerDiv - constructor()', this.containerDiv);
     }
@@ -41,6 +49,9 @@ export class AppComponent implements AfterViewInit {
         this.cards.changes.subscribe(
             cards => console.log('cards changed', cards)
         );
+
+        console.log('this.highlighted', this.highlighted);
+        console.log('this.highlighted2', this.highlighted2);
     }
 
     onCourseSelected(course: Course) {
