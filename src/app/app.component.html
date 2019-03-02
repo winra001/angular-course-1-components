@@ -15,7 +15,7 @@
 
 <br><br>
 
-<b>Section 6: Directive</b>
+<b>Section 6: Attribute Directive</b>
 <div class="courses" *ngIf="courses[2] as course">
     <course-card highlighted #highlighter="hl" (toggleHighlight)="onToggle($event)"
         [course]="course" (courseSelected)="onCourseSelected($event)">
@@ -25,6 +25,23 @@
         </div>
     </course-card>
 </div>
+
+<br><br>
+
+<b>Section 6: Structural Directive</b>
+<ng-template [ngIf]="courses[2]" let-course>
+    <div class="courses">
+        <course-card highlighted #highlighter="hl" (toggleHighlight)="onToggle($event)"
+            [course]="course" (courseSelected)="onCourseSelected($event)">
+
+            <course-image [src]="course.iconUrl" *ngxUnless="!course.iconUrl"></course-image>
+
+            <div class="course-description" (dblclick)="highlighter.toggle()">
+                {{course.longDescription}}
+            </div>
+        </course-card>
+    </div>
+</ng-template>
 
 <hr>
 
